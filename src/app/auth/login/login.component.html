@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-content>
+    <div>
+      <div class="header">
+        <P>Sign Into Your Account </P>
+      </div>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" name="loginForm">
+      <div class="email-input">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="text" formControlName="email" matInput required />
+          <mat-error> Required email address </mat-error>
+          <mat-error>E-mail is not valid</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            type="text"
+            formControlName="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+          <mat-error> Required password </mat-error>
+          <mat-error> Minimum length is 6 </mat-error>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide Password'"
+            [attr.aira-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="primary">Login</button>
+    </form>
+
+    <div class="button-row">
+      <p>Create New Account</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="loading" class="loading">Loading...</div>

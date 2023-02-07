@@ -1,0 +1,23 @@
+<div
+  [ngClass]="{ reminder: todo.isDone }"
+  class="todo"
+  (dblclick)="onToggle(todo)"
+>
+  <h3>
+    {{ todo.task }}
+    <fa-icon
+      (click)="onDelete(todo)"
+      [ngStyle]="{ color: 'red' }"
+      [icon]="faTimes"
+    ></fa-icon>
+  </h3>
+
+  <h3>
+    {{ todo.createdAt | date : "medium" }}
+    <fa-icon
+      (click)="onUpdate(todo)"
+      [ngStyle]="{ color: 'blue' }"
+      [icon]="faEdit"
+    ></fa-icon>
+  </h3>
+</div>

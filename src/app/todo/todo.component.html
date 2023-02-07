@@ -1,0 +1,9 @@
+<div class="main-body">
+  <app-todo-item
+    *ngFor="let todo of todos"
+    [todo]="todo"
+    (onDeleteTodo)="deleteTodo(todo)"
+    (onToggleIsDone)="toggleIsDone(todo)"
+    (onUpdateTodo)="openUpdateTodoForm(todo)"
+  ></app-todo-item>
+</div>

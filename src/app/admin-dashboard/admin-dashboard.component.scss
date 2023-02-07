@@ -1,0 +1,35 @@
+.content {
+  padding-top: 20px;
+}
+
+.main-body {
+  max-width: 50%;
+  margin: 50px auto;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.aLink {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.action {
+  padding: 0px 25px 20px;
+  flex: 1;
+}
+
+button {
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+}

@@ -1,0 +1,53 @@
+<div class="loader-container">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+</div>
+
+<div mat-dialog-title>
+  <h1>Todo Form</h1>
+</div>
+
+<form [formGroup]="todoForm" (ngSubmit)="onFormSubmit()" #formDig="ngForm">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Task</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ex. Prepare dinner"
+          formControlName="task"
+        />
+
+        <mat-hint>Task to be performed</mat-hint>
+        <mat-error>Task is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Translate</mat-label>
+        <mat-select (valueChange)="translate($event)">
+          <mat-option *ngFor="let lang of languages" [value]="lang.value">
+            {{ lang.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-slide-toggle formControlName="isDone"
+        >Task completed?</mat-slide-toggle
+      >
+    </div>
+  </div>
+
+  <div class="button-container">
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ data ? "Update" : "Save" }}
+      </button>
+    </div>
+  </div>
+</form>
