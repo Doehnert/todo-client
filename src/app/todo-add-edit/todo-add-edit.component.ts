@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { environment } from 'src/environments/environment';
 import { CoreService } from '../core/core.service';
 import { TodoListService } from '../services/todo-list.service';
+import { environment } from '../../environments/environment';
 
 type TLanguage = {
   value: string;
@@ -14,8 +14,6 @@ type TLanguage = {
 const headersRequest = {
   'Content-Type': 'text/plain',
 };
-
-const BASE_API_URL = 'http://localhost:5051';
 
 @Component({
   selector: 'app-todo-add-edit',
@@ -53,7 +51,7 @@ export class TodoAddEditComponent implements OnInit {
 
   translate(lng: string) {
     this._http
-      .post(`${BASE_API_URL}/gcp-translate/translate`, {
+      .post(`${environment.BASE_URL}/gcp-translate/translate`, {
         todoId: this?.data?.id,
         text: this.todoForm.value.task,
         to: lng,

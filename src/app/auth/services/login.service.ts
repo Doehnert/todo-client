@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Login } from 'src/app/shared/models/login.model';
 import { User } from 'src/app/shared/models/user.model';
+import { environment } from '../../../environments/environment';
 
 const LS_KEY: string = 'loggedUser';
-
-// const BASE_URL = 'https://app-6pchjqgmsq-uc.a.run.app';
-const BASE_URL = 'http://localhost:5051';
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +27,10 @@ export class LoginService {
   }
 
   login(login: Login): Observable<User | null> {
-    return this._http.post(`${BASE_URL}/api/v1/auth/login`, login);
+    return this._http.post(`${environment.BASE_URL}/api/v1/auth/login`, login);
   }
 
   getUserRole(): string {
-    console.log(
-      '🚀 ~ file: login.service.ts:37 ~ LoginService ~ getUserRole ~ this.loggedUser?.token',
-      this.loggedUser?.token
-    );
     if (this.loggedUser?.token) {
       const role = JSON.parse(atob(this.loggedUser.token.split('.')[1])).roles;
       console.log(
