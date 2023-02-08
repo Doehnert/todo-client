@@ -39,6 +39,7 @@ export class AdminDashboardComponent implements OnInit {
       data: {
         userId: userId,
       },
+      width: '800px',
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {

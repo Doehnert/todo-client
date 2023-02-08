@@ -15,12 +15,16 @@ export class HeaderComponent {
     new EventEmitter();
   @Output('logout') logout: EventEmitter<any> = new EventEmitter();
 
+  public adminSection: boolean;
+
   constructor(
     private loginService: LoginService,
     private todoService: TodoListService,
     private _dialog: MatDialog,
-    private router: Router
-  ) {}
+    public router: Router
+  ) {
+    this.adminSection = false;
+  }
 
   addTodoForm() {
     this.openAddTodoForm.emit();
@@ -30,7 +34,13 @@ export class HeaderComponent {
     this.logout.emit();
   }
 
-  goToAdmin() {
-    this.router.navigate(['/admin']);
+  toggleSection() {
+    if (this.router.url === '/admin') {
+      this.adminSection = false;
+      this.router.navigate(['/home']);
+    } else {
+      this.adminSection = true;
+      this.router.navigate(['/admin']);
+    }
   }
 }

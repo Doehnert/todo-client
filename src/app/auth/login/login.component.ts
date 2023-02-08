@@ -36,10 +36,6 @@ export class LoginComponent implements OnInit {
     });
 
     if (this.loginService.loggedUser) {
-      console.log(
-        '🚀 ~ file: login.component.ts:38 ~ LoginComponent ~ this.loginService.loggedUser',
-        this.loginService.loggedUser
-      );
       this.router.navigate(['/home']);
     }
   }
@@ -58,10 +54,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.log(
-          '🚀 ~ file: login.component.ts:65 ~ LoginComponent ~ this.loginService.login ~ err',
-          err
-        );
         this.loading = false;
         this._coreService.openSnackBar(err.error.message);
       },

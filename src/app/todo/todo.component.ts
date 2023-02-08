@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginService } from '../auth/services/login.service';
+import { CoreService } from '../core/core.service';
 import { TodoListService } from '../services/todo-list.service';
 import { Todo } from '../shared/models/todo.model';
 import { TodoAddEditComponent } from '../todo-add-edit/todo-add-edit.component';
@@ -18,7 +19,9 @@ export class TodoComponent {
     private loginService: LoginService,
     private todoService: TodoListService,
     private _dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private todoListService: TodoListService,
+    private _coreService: CoreService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +40,19 @@ export class TodoComponent {
   }
 
   toggleIsDone(todo: Todo) {
-    // todo.isDone = !todo.isDone;
+    console.log(
+      '🚀 ~ file: todo.component.ts:42 ~ TodoComponent ~ toggleIsDone ~ todo',
+      todo
+    );
+    todo.isDone = !todo.isDone;
+    if (todo.id) {
+      this.todoListService.updateTodo(todo.id, todo).subscribe({
+        next: () => {
+          this._coreService.openSnackBar('Todo updated');
+        },
+        error: console.error,
+      });
+    }
   }
 
   getTodoList() {

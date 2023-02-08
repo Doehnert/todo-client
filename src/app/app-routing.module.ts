@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AppComponent } from './app.component';
 import { LoginRoutes } from './auth/auth-routing.module';
 import { LoginComponent } from './auth/login/login.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { HomeComponent } from './home/home.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
     data: {
       role: 'admin',
     },
+  },
+  {
+    path: 'signup',
+    component: SigninComponent,
   },
   ...LoginRoutes,
 ];

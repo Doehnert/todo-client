@@ -11,6 +11,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./user-history.component.scss'],
 })
 export class UserHistoryComponent implements OnInit {
+  numOfTranslations: number = 0;
+  userEmail: string = '';
+
   displayedColumns: string[] = [
     'task',
     'isTranslated',
@@ -36,9 +39,11 @@ export class UserHistoryComponent implements OnInit {
   getHistoryList() {
     this._usersService.getUser(this.data.userId).subscribe({
       next: (res) => {
+        this.userEmail = res.email;
         let myHist: any = [];
         res.todos.map((task: any) => {
           task.histories.map((h: any) => {
+            if (h.isTranslated) this.numOfTranslations += 1;
             const myHistory = {
               id: h.id,
               isTranslated: h.isTranslated,
