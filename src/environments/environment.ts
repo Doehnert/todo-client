@@ -1,3 +1,3 @@
 export const environment = {
-  apiKey: process.env['API_KEY'],
+  BASE_URL: 'https://app-6pchjqgmsq-uc.a.run.app',
 };

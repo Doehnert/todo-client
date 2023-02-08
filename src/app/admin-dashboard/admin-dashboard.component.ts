@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../auth/services/login.service';
 import { CoreService } from '../core/core.service';
 import { UsersService } from '../services/users.service';
+import { User } from '../shared/models/user.model';
 import { TodoAddEditComponent } from '../todo-add-edit/todo-add-edit.component';
 import { TodoComponent } from '../todo/todo.component';
 import { UserHistoryComponent } from '../user-history/user-history.component';
@@ -48,6 +49,22 @@ export class AdminDashboardComponent implements OnInit {
         }
       },
     });
+  }
+
+  toggleUserRole(user: User) {
+    if (user.id) {
+      this._usersService.toggleUserRole(user.id).subscribe({
+        next: () => {
+          if (user.roles === 'admin') {
+            user.roles = 'user';
+          } else {
+            user.roles = 'admin';
+          }
+          this._coreService.openSnackBar('User role successfully toggled');
+        },
+        error: console.error,
+      });
+    }
   }
 
   openAddTodoForm() {
