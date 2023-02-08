@@ -11,6 +11,11 @@ import { environment } from '../../environments/environment';
 export class UsersService {
   constructor(private _http: HttpClient) {}
 
+  toggleUserRole(userId: string): Observable<User | null> {
+    const url = `${environment.BASE_URL}/auth/toggle/${userId}`;
+    return this._http.get<User>(url);
+  }
+
   getUsers(): Observable<User[] | null> {
     const url = `${environment.BASE_URL}/auth`;
     return this._http.get<User[]>(url);
