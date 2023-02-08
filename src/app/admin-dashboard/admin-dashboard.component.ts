@@ -60,7 +60,7 @@ export class AdminDashboardComponent implements OnInit {
           } else {
             user.roles = 'admin';
           }
-          this._coreService.openSnackBar('User role successfully toggled');
+          this._coreService.openSnackBar('User role successfully toggled!');
         },
         error: console.error,
       });
